@@ -7,7 +7,7 @@ module.exports = slsExpress
 
 function implement(app){
     app.use(allowAccessControlOriginMiddleware)  //  res.append('Access-Control-Allow-Origin', '*');
-    console.log(process.env.SERVERLESS_EXPRESS_PLATFORM);
+    console.log('SERVERLESS_EXPRESS_PLATFORM', process.env.SERVERLESS_EXPRESS_PLATFORM);
     switch( process.env.SERVERLESS_EXPRESS_PLATFORM ){
         case 'aws': return aws_express(app);
         case 'azure': return azure_express(app);
