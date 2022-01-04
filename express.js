@@ -7,10 +7,12 @@ module.exports = slsExpress
 
 function implement(app){
     app.use(allowAccessControlOriginMiddleware)  //  res.append('Access-Control-Allow-Origin', '*');
+    console.log(process.env.SERVERLESS_EXPRESS_PLATFORM);
     switch( process.env.SERVERLESS_EXPRESS_PLATFORM ){
         case 'aws': return aws_express(app);
         case 'azure': return azure_express(app);
         case 'google': return google_express(app);
+        case 'oci': return oci_express(app);
         default: return app
     }
 }
@@ -29,5 +31,10 @@ function azure_express(app){
 
 // google already uses express, so we return
 function google_express(app){
+    return app
+}
+
+// oci already uses express, so we return
+function oci_express(app){
     return app
 }
